@@ -7,7 +7,6 @@ export default function Header() {
     const mycolor="#212121"
   return (
     <View style={{
-        marginTop:Constant.statusBarHeight,
         height:45,
         backgroundcolor:"white",
         flexDirection:"row",
