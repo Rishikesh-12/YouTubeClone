@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { StyleSheet, Text, View, ScrollView, TextInput } from 'react-native';
 import { Ionicons, FontAwesome, MaterialCommunityIcons} from '@expo/vector-icons';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
+import MiniCard from '../components/MiniCard'
 
 export default function SearchScreen() {
     const [value,setValue] = useState("")  
@@ -27,7 +28,17 @@ export default function SearchScreen() {
                 />
                 <MaterialCommunityIcons name="send-circle" size={32}  />
             </View>
-        
+            <ScrollView>
+                <MiniCard />
+                <MiniCard />
+                <MiniCard />
+                <MiniCard />
+                <MiniCard />
+                <MiniCard />
+                <MiniCard />
+                <MiniCard />
+                <MiniCard />
+            </ScrollView>
         </View>
     );
 }
