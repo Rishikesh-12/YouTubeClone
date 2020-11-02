@@ -1,11 +1,25 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, ScrollView, TextInput } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TextInput, FlatList, ActivityIndicator } from 'react-native';
 import { Ionicons, FontAwesome, MaterialCommunityIcons} from '@expo/vector-icons';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
 import MiniCard from '../components/MiniCard'
 
+
+// https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=songs&type=video&key=AIzaSyDCJLehEfpiNOMlAfUm9Jgznj6onbYfe4I
+
 export default function SearchScreen() {
-    const [value,setValue] = useState("")  
+    const [value,setValue] = useState("") 
+    const [miniCardData,setMiniCard] = useState([])
+    const [loading, setLoading] = useState(false)
+    const fetchData = () => {
+        setLoading(true)
+        fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${value}&type=video&type=playlist&type=channel&key=AIzaSyDCJLehEfpiNOMlAfUm9Jgznj6onbYfe4I`)
+        .then(res=>res.json())
+        .then(data=>{
+            setLoading(false)
+            console.log(data)
+            setMiniCard(data.items)
+        })
+    }
     return (
         <View style={{
             flex:1,
@@ -26,19 +40,27 @@ export default function SearchScreen() {
                     value={value} 
                     onChangeText={(text)=>setValue(text)}
                 />
-                <MaterialCommunityIcons name="send-circle" size={32}  />
+                <MaterialCommunityIcons 
+                    name="send-circle" 
+                    size={32}
+                    onPress={()=>fetchData()}
+                />
             </View>
-            <ScrollView>
-                <MiniCard />
-                <MiniCard />
-                <MiniCard />
-                <MiniCard />
-                <MiniCard />
-                <MiniCard />
-                <MiniCard />
-                <MiniCard />
-                <MiniCard />
-            </ScrollView>
+            {loading ? <ActivityIndicator style={{
+                marginTop:120
+            }} size="large" color="blue" /> : null}                   
+            <FlatList
+                data={miniCardData}
+                renderItem={({item})=>{
+                return<MiniCard 
+                    videoId={item.id.videoId}
+                    title={item.snippet.title}
+                    channel={item.snippet.channelTitle}
+                    />    
+            }}
+            keyExtractor={item=>item.id.videoId}
+            />
+
         </View>
     );
 }

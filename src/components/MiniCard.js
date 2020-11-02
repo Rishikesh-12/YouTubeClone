@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Image, Dimensions } from 'react-native';
 import Constant from 'expo-constants'
 
-export default function MiniCard(){
+export default function MiniCard(props){
     return(
         <View style={{
             flexDirection:"row",
@@ -10,7 +10,7 @@ export default function MiniCard(){
             marginBottom:0
         }}>
             <Image
-                source={{uri:"https://images.unsplash.com/photo-1485846234645-a62644f84728?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1480&q=80"}}
+                source={{uri:`https://i.ytimg.com/vi/${props.videoId}/maxresdefault.jpg`}}
                 style={{
                     width:"45%",
                     height:100,
@@ -25,10 +25,10 @@ export default function MiniCard(){
                 }}
                 ellipsizeMode="tail"
                 numberOfLines={3}
-                >her fav was banana but her aunt was forcing apples on her which was not ripe and she wants orgasm</Text>
+                >{props.title}</Text>
                 <Text style={{
                     fontSize:12
-                }}>Rishikesh Mishra</Text>
+                }}>{props.channel}</Text>
             </View>
         </View>
     )
