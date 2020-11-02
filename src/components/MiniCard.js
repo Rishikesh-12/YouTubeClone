@@ -10,7 +10,7 @@ export default function MiniCard(props){
             marginBottom:0
         }}>
             <Image
-                source={{uri:`https://i.ytimg.com/vi/${props.videoId}/maxresdefault.jpg`}}
+                source={{uri:`https://i.ytimg.com/vi/${props.videoId}/hqdefault.jpg`}}
                 style={{
                     width:"45%",
                     height:100,
