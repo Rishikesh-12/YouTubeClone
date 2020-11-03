@@ -2,9 +2,7 @@ import React, {useState} from 'react';
 import { StyleSheet, Text, View, ScrollView, TextInput, FlatList, ActivityIndicator } from 'react-native';
 import { Ionicons, FontAwesome, MaterialCommunityIcons} from '@expo/vector-icons';
 import MiniCard from '../components/MiniCard'
-
-
-// https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=songs&type=video&key=AIzaSyDCJLehEfpiNOMlAfUm9Jgznj6onbYfe4I
+import Constant from 'expo-constants'
 
 export default function SearchScreen() {
     const [value,setValue] = useState("") 
@@ -23,6 +21,7 @@ export default function SearchScreen() {
     return (
         <View style={{
             flex:1,
+            marginTop:Constant.statusBarHeight,
         }}>
             <View style={{
                 padding:5,
@@ -35,7 +34,6 @@ export default function SearchScreen() {
                 <TextInput style={{
                     width:"75%",
                     backgroundColor:"#e2e2e2",
-                    // height:39
                 }}
                     value={value} 
                     onChangeText={(text)=>setValue(text)}
@@ -60,7 +58,6 @@ export default function SearchScreen() {
             }}
             keyExtractor={item=>item.id.videoId}
             />
-
         </View>
     );
 }
