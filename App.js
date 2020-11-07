@@ -11,7 +11,12 @@ import Search from './src/screens/Search'
 import VideoPlayer from './src/screens/VideoPlayer';
 import Explore from './src/screens/Explore';
 import Subscribe from './src/screens/Subscribe';
+import { reducer } from './src/reducers/reducer';
 
+import {Provider} from 'react-redux'
+import {createStore} from 'redux'
+
+const store = createStore(reducer)
 const Stack = createStackNavigator()
 const Tabs = createBottomTabNavigator()
 
@@ -46,19 +51,14 @@ const RootHome = () => {
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator headerMode="none">
-        <Stack.Screen name="rootHome" component={RootHome}/>
-        <Stack.Screen name="search" component={Search}/>
-        <Stack.Screen name="videoplayer" component={VideoPlayer}/>
-      </Stack.Navigator>
-    </NavigationContainer>
-    // <View style={{
-    //   flex:1,
-    //   marginTop:Constant.statusBarHeight,
-    // }}>
-    //   {/* <Home /> */}
-    //   <Search />
-    // </View>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator headerMode="none">
+          <Stack.Screen name="rootHome" component={RootHome}/>
+          <Stack.Screen name="search" component={Search}/>
+          <Stack.Screen name="videoplayer" component={VideoPlayer}/>
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }

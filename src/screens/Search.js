@@ -3,19 +3,25 @@ import { StyleSheet, Text, View, ScrollView, TextInput, FlatList, ActivityIndica
 import { Ionicons, FontAwesome, MaterialCommunityIcons} from '@expo/vector-icons';
 import MiniCard from '../components/MiniCard'
 import Constant from 'expo-constants'
+import {useSelector,useDispatch} from 'react-redux'
 
 export default function SearchScreen({navigation}) {
     const [value,setValue] = useState("") 
-    const [miniCardData,setMiniCard] = useState([])
+    // const [miniCardData,setMiniCard] = useState([])
+    const dispatch = useDispatch()
+    const miniCardData = useSelector(state=>{
+        return state
+    })
     const [loading, setLoading] = useState(false)
     const fetchData = () => {
         setLoading(true)
         fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${value}&type=video&key=AIzaSyDCJLehEfpiNOMlAfUm9Jgznj6onbYfe4I`)
         .then(res=>res.json())
         .then(data=>{
+            console.log(data.items)
             setLoading(false)
-            console.log(data)
-            setMiniCard(data.items)
+            dispatch({type:"add",payload:data.items})
+            // setMiniCard(data.items)
         })
     }
     return (
