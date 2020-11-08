@@ -15,7 +15,7 @@ export default function SearchScreen({navigation}) {
     const [loading, setLoading] = useState(false)
     const fetchData = () => {
         setLoading(true)
-        fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${value}&type=video&key=AIzaSyDCJLehEfpiNOMlAfUm9Jgznj6onbYfe4I`)
+        fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${value}&type=video&key=AIzaSyDCJLehEfpiNOMlAfUm9Jgznj6onbYfe4I`)
         .then(res=>res.json())
         .then(data=>{
             console.log(data.items)

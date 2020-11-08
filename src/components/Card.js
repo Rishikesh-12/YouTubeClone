@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image, Dimensions } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
 
-export default function Card(){
+export default function Card(props){
     const mycolor="#212121"
     return(
         <View style={{
@@ -12,7 +12,7 @@ export default function Card(){
             // margin:5,
         }}>
             <Image
-                source={{uri:"https://images.unsplash.com/photo-1532436908675-8b2b1e9ca504?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"}}
+                source={{uri:`https://i.ytimg.com/vi/${props.videoId}/hqdefault.jpg`}}
                 style={{
                     width:"100%",
                     height:200,
@@ -32,8 +32,8 @@ export default function Card(){
                     }}
                     ellipsizeMode="tail"
                     numberOfLines={2}
-                    >Apple is good but banana is her fxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxav</Text>
-                    <Text>Apple is good but banana is her fav</Text>
+                    >{props.title}</Text>
+                    <Text>{props.channel}</Text>
                 </View>
             </View>
         </View>
