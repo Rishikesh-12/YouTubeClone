@@ -18,7 +18,7 @@ export default function SearchScreen({navigation}) {
         fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${value}&type=video&key=AIzaSyDCJLehEfpiNOMlAfUm9Jgznj6onbYfe4I`)
         .then(res=>res.json())
         .then(data=>{
-            console.log(data.items)
+            // console.log(data.items)
             setLoading(false)
             dispatch({type:"add",payload:data.items})
             // setMiniCard(data.items)
