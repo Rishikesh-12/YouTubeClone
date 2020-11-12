@@ -1,10 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, Dimensions,TouchableOpacity } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation,useTheme } from '@react-navigation/native';
+import { color } from 'react-native-reanimated';
 
 export default function Card(props){
-    const navigation=useNavigation()  
+    const navigation=useNavigation()
+    const {colors} = useTheme()
+    const textcolor = colors.iconColor   
     const mycolor="#212121"
     return(
         <TouchableOpacity 
@@ -21,18 +24,21 @@ export default function Card(props){
                     flexDirection:"row",
                     margin:5
                 }}>
-                    <MaterialIcons name="account-circle" size={40} color={mycolor} />
+                    <MaterialIcons name="account-circle" size={40} color={textcolor} />
                     <View style={{
                         marginLeft:10
                     }}>
                         <Text style={{
                             fontSize:20,
-                            width:Dimensions.get("screen").width - 70
+                            width:Dimensions.get("screen").width - 70,
+                            color:textcolor
                         }}
                         ellipsizeMode="tail"
                         numberOfLines={2}
                         >{props.title}</Text>
-                        <Text>{props.channel}</Text>
+                        <Text style={{
+                            color:textcolor,
+                        }}>{props.channel}</Text>
                     </View>
                 </View>
             </View>

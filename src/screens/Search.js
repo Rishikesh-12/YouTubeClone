@@ -4,8 +4,11 @@ import { Ionicons, FontAwesome, MaterialCommunityIcons} from '@expo/vector-icons
 import MiniCard from '../components/MiniCard'
 import Constant from 'expo-constants'
 import {useSelector,useDispatch} from 'react-redux'
+import { useTheme } from '@react-navigation/native';
 
-export default function SearchScreen({navigation}) {
+export default function SearchScreen({navigation}) { 
+    const {colors} = useTheme()
+    const mycolor = colors.iconColor   
     const [value,setValue] = useState("") 
     // const [miniCardData,setMiniCard] = useState([])
     const dispatch = useDispatch()
@@ -34,19 +37,27 @@ export default function SearchScreen({navigation}) {
                 flexDirection:"row",
                 justifyContent:"space-around",
                 elevation:5,
-                backgroundColor:"white"
+                backgroundColor:colors.headerColor
             }}>
-                <Ionicons name="md-arrow-back" size={32} 
+                <Ionicons name="md-arrow-back" 
+                    style={{
+                        color:mycolor,
+                    }}
+                    size={32} 
                     onPress={()=>navigation.goBack()}    
                 />
                 <TextInput style={{
                     width:"75%",
-                    backgroundColor:"#e2e2e2",
+                    backgroundColor:colors.searchboxColor,
+                    color:colors.iconColor
                 }}
                     value={value} 
                     onChangeText={(text)=>setValue(text)}
                 />
                 <MaterialCommunityIcons 
+                    style={{
+                        color:mycolor,
+                    }} 
                     name="send-circle" 
                     size={32}
                     onPress={()=>fetchData()}

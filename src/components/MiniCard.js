@@ -1,10 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, Dimensions, TouchableOpacity } from 'react-native';
 import Constant from 'expo-constants'
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useTheme } from '@react-navigation/native';
 
 export default function MiniCard(props){
     const navigation=useNavigation()  
+    const {colors} = useTheme()
+    const textcolor = colors.iconColor   
     return(
         <TouchableOpacity 
             onPress={() => navigation.navigate("videoplayer",{videoId:props.videoId,title:props.title})}>
@@ -25,13 +27,15 @@ export default function MiniCard(props){
                 }}>
                     <Text style={{
                         fontSize:17,
-                        width:Dimensions.get("screen").width/2
+                        width:Dimensions.get("screen").width/2,
+                        color:textcolor,
                     }}
                     ellipsizeMode="tail"
                     numberOfLines={3}
                     >{props.title}</Text>
                     <Text style={{
-                        fontSize:12
+                        fontSize:12,
+                        color:textcolor,
                     }}>{props.channel}</Text>
                 </View>
             </View>

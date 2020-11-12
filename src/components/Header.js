@@ -1,17 +1,18 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { AntDesign, Octicons, MaterialIcons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useTheme } from '@react-navigation/native';
 import Constant from 'expo-constants'
 
 export default function Header() {
-    const navigation=useNavigation()  
-    const mycolor="#212121"
+    const navigation=useNavigation()
+    const {colors} = useTheme()  
+    const mycolor=colors.iconColor
   return (
     <View style={{
         marginTop:Constant.statusBarHeight,
         height:45,
-        backgroundcolor:"white",
+        backgroundColor:colors.header,
         flexDirection:"row",
         justifyContent:"space-between",
         elevation:4
