@@ -5,7 +5,7 @@ import Card from '../components/Card'
 import {useSelector} from 'react-redux'
 export default function HomeScreen() {
   const CardData = useSelector(state =>{
-    return state;
+    return state.cardData;
   })
   return (
     <View style={{

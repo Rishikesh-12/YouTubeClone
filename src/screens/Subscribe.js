@@ -6,7 +6,7 @@ import{useSelector} from 'react-redux'
 
 export default function Subscribe(){
     const CardData = useSelector(state =>{
-        return state;
+        return state.cardData;
     })
     return(
         <View style={{

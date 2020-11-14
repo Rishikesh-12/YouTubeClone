@@ -27,7 +27,7 @@ const LittleCard = ({name}) => {
 
 export default function Explore(){
     const CardData = useSelector(state =>{
-        return state;
+        return state.cardData;
     })
     return(
         <View style={{

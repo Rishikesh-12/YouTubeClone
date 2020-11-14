@@ -1,13 +1,19 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { AntDesign, Octicons, MaterialIcons } from '@expo/vector-icons';
+import { AntDesign, Octicons, MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useNavigation, useTheme } from '@react-navigation/native';
 import Constant from 'expo-constants'
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function Header() {
     const navigation=useNavigation()
+    const dispatch = useDispatch()
     const {colors} = useTheme()  
     const mycolor=colors.iconColor
+    const currentTheme  =useSelector(state=>{
+      return state.myDarkMode
+    })
+
   return (
     <View style={{
         marginTop:Constant.statusBarHeight,
@@ -41,7 +47,9 @@ export default function Header() {
           <Octicons name="device-camera-video" size={32} color={mycolor} />
           <AntDesign name="search1" size={32} color={mycolor} 
             onPress={()=>navigation.navigate("search")}/>
-          <MaterialIcons name="account-circle" size={32} color={mycolor} />
+            <MaterialCommunityIcons name="theme-light-dark" size={32} color={mycolor} 
+              onPress={()=>dispatch({type:"change_theme",payload:!currentTheme})}
+            />
       </View>
     </View>
   );
